@@ -143,4 +143,11 @@ H:\Github\Asp.net-miniCMS\miniCMS\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysi
 H:\Github\Asp.net-miniCMS\miniCMS\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 H:\Github\Asp.net-miniCMS\miniCMS\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 H:\Github\Asp.net-miniCMS\miniCMS\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Home\Page.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Create.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Delete.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Details.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Edit.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Admin\Admin.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+H:\Github\Asp.net-miniCMS\miniCMS\obj\Debug\net5.0\Razor\Views\CMS\Page.cshtml.g.cs

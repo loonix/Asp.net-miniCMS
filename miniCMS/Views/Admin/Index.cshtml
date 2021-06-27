@@ -1,59 +1,20 @@
-﻿@model IEnumerable<miniCMS.Models.Conteudo>
-
-@{
+﻿@{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Pagina)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Texto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Autor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pagina)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Texto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<form asp-action="Index" method="post">
+    <div style="width:50%; margin:auto; text-align:center;">
+        <div class="mb-4">
+            <img src="~/cms/media/login.png" />
+        </div>
+        <div class="mb-4">
+            <input type="text" name="UserName" class="form-control form-control-lg" placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" name="Password" class="form-control form-control-lg" placeholder="Código" required>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-primary" type="submit">Entrar</button>
+        </div>
+    </div>
+</form>

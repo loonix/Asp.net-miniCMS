@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +20,46 @@ namespace miniCMS.Controllers
             _context = context;
         }
 
-        // GET: Admin
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(IFormCollection formCollection)
+        {
+            string user = formCollection["UserName"];
+            string pass = formCollection["UserName"];
+
+            HttpContext.Session.SetString("Login", "false");
+
+            if (user == "admin" && pass == "admin")
+            {
+                HttpContext.Session.SetString("Login", "true");
+                return RedirectToAction("Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+
+        // GET: Admin
+        public async Task<IActionResult> Admin()
+        {
+            var login = HttpContext.Session.GetString("Login");
+            if (login == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if (bool.Parse(login) == false)
+            {
+                return RedirectToAction("Index");
+            }
             return View(await _context.Conteudos.ToListAsync());
         }
+
 
         // GET: Admin/Details/5
         public async Task<IActionResult> Details(int? id)

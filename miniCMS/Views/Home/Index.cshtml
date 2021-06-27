@@ -1,9 +1,12 @@
-﻿@{
+﻿@model miniCMS.Models.Conteudo
+@{
     ViewData["Title"] = "Home Page";
 }
+@Html.Raw(@Model.Titulo)
+@Html.Raw(@Model.Texto)
 
-<h1>Home</h1>
+@*<h1>Home</h1>
 <p>Bem vindo ao <b>Sistema miniCMS</b></p>
 <p>Todo o conteudo do site está numa <b>base de dados</b></p>
-<img src='cms/media/minicms.jpg' />
+<img src='cms/media/minicms.jpg' />*@
 
