@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Github\\Asp.net-miniCMS\\miniCMS\\miniCMS.csproj": {}
+    "H:\\Github\\Asp.net-miniCMS\\miniCMS.csproj": {}
   },
   "projects": {
-    "H:\\Github\\Asp.net-miniCMS\\miniCMS\\miniCMS.csproj": {
+    "H:\\Github\\Asp.net-miniCMS\\miniCMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Github\\Asp.net-miniCMS\\miniCMS\\miniCMS.csproj",
+        "projectUniqueName": "H:\\Github\\Asp.net-miniCMS\\miniCMS.csproj",
         "projectName": "miniCMS",
-        "projectPath": "H:\\Github\\Asp.net-miniCMS\\miniCMS\\miniCMS.csproj",
+        "projectPath": "H:\\Github\\Asp.net-miniCMS\\miniCMS.csproj",
         "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "H:\\Github\\Asp.net-miniCMS\\miniCMS\\obj\\",
+        "outputPath": "H:\\Github\\Asp.net-miniCMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

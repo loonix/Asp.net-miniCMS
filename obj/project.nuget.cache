@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s2KL9mPy7BXSXhfG9CqSVXiPCD7wVk59/nAknFmrTjARA1bNe+WixjsU5kNdZOOqe0W2u3SeU76ZJpikPaffMA==",
+  "dgSpecHash": "W7mkU9c+wWtPJ7Y5/Q4Mo4kpyKzljQVL5zki7k6jeXCEnSBid4iWRwYIeYj/AE0oaBwDYjtD8yNSK1TmOGk5Zg==",
   "success": true,
-  "projectFilePath": "H:\\Github\\Asp.net-miniCMS\\miniCMS\\miniCMS.csproj",
+  "projectFilePath": "H:\\Github\\Asp.net-miniCMS\\miniCMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
