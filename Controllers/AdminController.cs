@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using miniCMS.Data;
 using miniCMS.Models;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace miniCMS.Controllers
 {
@@ -15,50 +17,161 @@ namespace miniCMS.Controllers
     {
         private readonly DbMiniCMSContext _context;
 
+        public string fullName;
+
         public AdminController(DbMiniCMSContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Home
+        public async Task<IActionResult> Index()
+        {
+            var idUser = HttpContext.Session.GetInt32("idUser");
+            if (idUser != null) 
+            {
+                return View(await _context.Conteudos.ToListAsync());
+            } 
+            else 
+            {
+                return RedirectToAction("Login"); 
+            }
+        }
+
+
+        //GET: Register
+
+        public ActionResult Register()
         {
             return View();
         }
 
+        //POST: Register
         [HttpPost]
-        public IActionResult Index(IFormCollection formCollection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(User _user)
         {
-            string user = formCollection["UserName"];
-            string pass = formCollection["UserName"];
-
-            HttpContext.Session.SetString("Login", "false");
-
-            if (user == "admin" && pass == "admin")
+            if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString("Login", "true");
-                return RedirectToAction("Admin");
+                var check = _context.Users.FirstOrDefault(s => s.Email == _user.Email);
+                if (check == null)
+                {
+                    _user.Password = GetMD5(_user.Password);
+                    _context.Users.Add(_user);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Email already exists";
+                    return View();
+                }
+
+
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            return View();
+
+
+        }
+
+        public ActionResult Login()
+        {
+            return View();
         }
 
 
-        // GET: Admin
-        public async Task<IActionResult> Admin()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password)
         {
-            var login = HttpContext.Session.GetString("Login");
-            if (login == null)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                var f_password = GetMD5(password);
+                var data = _context.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                if (data.Count() > 0)
+                {
+                    //add session
+                    HttpContext.Session.SetString("FullName", data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName);
+                    HttpContext.Session.SetString("Email", data.FirstOrDefault().Email);
+                    HttpContext.Session.SetInt32("idUser", data.FirstOrDefault().idUser);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Login failed";
+                    return RedirectToAction("Login");
+                }
             }
-            if (bool.Parse(login) == false)
-            {
-                return RedirectToAction("Index");
-            }
-            return View(await _context.Conteudos.ToListAsync());
+            return View();
         }
+
+
+        //Logout
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear(); // remove session
+            return RedirectToAction("Login");
+        }
+
+
+
+        //create a string MD5
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
+        }
+
+    
+    //public IActionResult Index()
+    //{
+    //    return View();
+    //}
+
+    //[HttpPost]
+    //public IActionResult Index(IFormCollection formCollection)
+    //{
+    //    string user = formCollection["UserName"];
+    //    string pass = formCollection["UserName"];
+
+    //    HttpContext.Session.SetString("Login", "false");
+
+    //    if (user == "admin" && pass == "admin")
+    //    {
+    //        HttpContext.Session.SetString("Login", "true");
+    //        return RedirectToAction("Admin");
+    //    }
+    //    else
+    //    {
+    //        return RedirectToAction("Index");
+    //    }
+    //}
+
+
+    //// GET: Admin
+    //public async Task<IActionResult> Admin()
+    //    {
+    //        var login = HttpContext.Session.GetString("Login");
+    //        if (login == null)
+    //        {
+    //            return RedirectToAction("Index");
+    //        }
+    //        if (bool.Parse(login) == false)
+    //        {
+    //            return RedirectToAction("Index");
+    //        }
+    //        return View(await _context.Conteudos.ToListAsync());
+    //    }
 
 
         // GET: Admin/Details/5

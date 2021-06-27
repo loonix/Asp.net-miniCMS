@@ -2,59 +2,62 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_LayoutAdmin";
+
 }
 <link href="~/richtexteditor/rte_theme_default.css" rel="stylesheet" />
 <script src="~/richtexteditor/rte.js"></script>
 <script src="~/richtexteditor/plugins/all_plugins.js"></script>
 <script src="~/richtexteditor/rte.js"></script>
 
-<h1>Create</h1>
-
-<h4>Conteudo</h4>
-<hr />
+<h1 class="mt-3">Nova Página</h1>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Pagina" class="control-label"></label>
-                <input asp-for="Pagina" class="form-control" />
-                <span asp-validation-for="Pagina" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Titulo" class="control-label"></label>
                 <input asp-for="Titulo" class="form-control" />
                 <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Texto" class="control-label"></label>
+                <div class="new-page-link">
+                    <span>CMS/Page/ </span><input asp-for="Pagina" class="form-control" />
+                </div>
+                <span asp-validation-for="Pagina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <textarea id="div_editor" asp-for="Texto" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Texto" class="text-danger"></span>
             </div>
             <script>
                 var editor1 = new RichTextEditor(document.getElementById("div_editor"));
             </script>
-
-            <div class="form-group">
-                <label asp-for="Autor" class="control-label"></label>
-                <input asp-for="Autor" class="form-control" />
-                <span asp-validation-for="Autor" class="text-danger"></span>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="Autor" class="control-label"></label>
+                        <input asp-for="Autor" class="form-control" />
+                        <span asp-validation-for="Autor" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="Data" class="control-label"></label>
+                        <input asp-for="Data" class="form-control" />
+                        <span asp-validation-for="Data" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" name="submit" class="btn btn-success mt-2" value="Criar" />
             </div>
         </form>
+        <a class="btn btn-outline-info mt-2" asp-action="Index">Voltar a lista</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

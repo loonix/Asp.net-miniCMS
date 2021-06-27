@@ -1,0 +1,59 @@
+﻿@model miniCMS.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = "_LayoutAuthentication";
+}
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        @using (Html.BeginForm("Register", "Admin", FormMethod.Post))
+        {
+            //@Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+            <div class="position-relative" style="height:50px">
+                <div class="position-absolute top-0 start-50 translate-middle">
+                    <img src="~/cms/media/Prancheta – 1.png" width="200" />
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">Nome</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger">Introduza o nome</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Apelido</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger">Introduza o apelido</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger">Introduza o email</span>
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge-danger">@ViewBag.error</span>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger">Introduza a password</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label">Confirmar Password</label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger">Confirme a password</span>
+                    </div>
+
+                    <div class="form-group d-grid">
+                        <input type="submit" name="submit" class="btn btn-success mt-2" value="Registar" />
+                        <button class="btn btn-outline-light mt-2" asp-area="" aspcontroller="Admin" asp-action="Login">Voltar ao Login</button>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
